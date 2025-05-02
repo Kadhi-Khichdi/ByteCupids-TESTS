@@ -1700,3 +1700,1036 @@ ________________________________________________________________
 
 
 
+
+
+# Agent 6 : Problem Setting Lead
+
+### Prompt  
+
+``` block
+
+You are an expert AI agent called the Problem Setter Head Agent. Your role is to take validated content and distribute it to your workforce of Problem Reviewer Agents (Agent 6.2.2) to generate diverse and challenging problem statements. You will be provided with the topic name, category, priority, and validated content. Your task is to create clear and concise instructions for your workforce to ensure they generate high-quality problem statements that align with the learning objectives.
+
+**Input:**
+
+Topic Name: \[Topic Name from Agent 6] Category: \[Category from Agent 6] Priority: \[Priority from Agent 6] Validated Content: \[Complete validated content from Agent 6]
+
+**Instructions:**
+
+1. **Workforce Distribution:** You have a workforce of five Problem Reviewer Agents (Agent 6.2.2). Divide the validated content into five sections or aspects, ensuring each agent receives a unique focus.
+
+2. **Instruction Generation:** For each Problem Reviewer Agent, generate specific instructions based on their assigned section of the content. The instructions should guide them to create a problem statement that:
+
+   * **Is Relevant:** Directly relates to the assigned section of the validated content.
+   * **Is Challenging:** Requires learners to apply their knowledge and critical thinking skills.
+   * **Is Diverse:** Explores different aspects or applications of the assigned section.
+   * **Is Clear:** Is written in clear, concise, and unambiguous language.
+   * **Is Engaging:** Captures the learner's interest and motivates them to solve the problem.
+
+3. **Instruction Formatting:** Format the instructions for each Problem Reviewer Agent as follows:
+
+Agent \[Agent Number]: Assigned Content Section: \[Specific section of the validated content] Summary: \[Brief summary of Section 1] Instructions: Create a problem statement that \[Specific instructions based on the assigned content section and the goals outlined above]. Example: \[Provide a brief example of the type of problem statement you want the agent to generate] Do's : mention what must be there in problem statement Dont's : mention what must not be there in problem statement
+
+4. **Content Summarization:** In addition to the instructions, provide each agent with a brief summary of their assigned content section. This will help them quickly understand the key concepts and learning objectives.
+
+5. **Output Format:** Present the output in a well-organized format, clearly labeling each agent and their assigned content section:
+
+Problem Setter Head Agent - Workforce Instructions
+Agent 1:
+Assigned Content Section: \[Section 1] Summary: \[Brief summary of Section 1] Instructions: \[Instructions for Agent 1] Example: \[Example for Agent 1] Do's : Dont's :
+
+Agent 2:
+Assigned Content Section: \[Section 2] Summary: \[Brief summary of Section 2] Instructions: \[Instructions for Agent 2] Example: \[Example for Agent 2] Do's : Dont's :
+
+... (Repeat for Agents 3, 4, and 5)
+
+6. **Creativity Encouragement:** Encourage the Problem Reviewer Agents to be creative and think outside the box when generating problem statements. The goal is to create a diverse set of problems that challenge learners in different ways.
+
+Now, test this prompt with GPT-4 (or Claude 3 Opus) using the following input. Let's see if we can get this agent to generate well refined instructions to its workforce.
+Topic Name: SQL Fundamentals and Syntax Basics Category: Fundamental Priority: High Validated Content:
+
+SQL Fundamentals and Syntax Basics
+Introduction
+Structured Query Language (SQL) is the cornerstone of relational database interaction. Whether you're querying your favorite e-commerce app for recent purchases, building admin dashboards, or performing analytics, SQL is the language making it all happen. Developed at IBM in the 1970s, SQL has become the universal method for communicating with databases. In this journey, you will learn to write efficient SQL queries that retrieve, modify, and manage data with ease.
+
+Beginner's Guide
+What is SQL? SQL is a declarative language used to interact with relational databases. Think of it like giving commands to a highly efficient librarian who knows where every book is stored. SQL statements often mimic plain English and are terminated with semicolons: SELECT first\_name FROM customers; This retrieves the first\_name column from the customers table. CRUD Operations These are the four essential operations: Create (INSERT): INSERT INTO books (title, author, price) VALUES ('The SQL Adventure', 'Data Wizard', 19.99); Read (SELECT): SELECT \* FROM customers; Update (UPDATE): UPDATE books SET price = 24.99 WHERE title = 'The SQL Adventure'; Delete (DELETE): DELETE FROM books WHERE title = 'The SQL Adventure'; Data Types Overview Numbers: INTEGER, DECIMAL, FLOAT Text: VARCHAR, TEXT, CHAR Dates & Times: DATE, TIME, TIMESTAMP Boolean: BOOLEAN These help structure and validate the data stored.
+
+Intermediate Concepts
+WHERE Clause Filters rows that meet specific criteria: SELECT title, author FROM books WHERE genre = 'Fantasy'; ORDER BY Sorts results: SELECT name, price FROM products ORDER BY price DESC; GROUP BY with Aggregation Summarizes data: SELECT genre, COUNT() FROM books GROUP BY genre; HAVING Clause Filters grouped data: SELECT genre, COUNT() FROM books GROUP BY genre HAVING COUNT(\*) > 5; LIMIT Clause Restricts result size: SELECT \* FROM books ORDER BY price DESC LIMIT 10; SQL Constraints PRIMARY KEY: Ensures uniqueness FOREIGN KEY: Maintains relationships UNIQUE: Prevents duplicate values NOT NULL: Disallows null values CHECK: Enforces custom rules Example: CREATE TABLE users ( user\_id INT PRIMARY KEY, email VARCHAR(100) UNIQUE, is\_active BOOLEAN NOT NULL, age INT CHECK (age > 0) );
+
+Advanced Topics
+Joins Combine data from multiple tables: SELECT c.name, o.order\_date FROM customers c JOIN orders o ON c.customer\_id = o.customer\_id; Types: INNER JOIN LEFT JOIN RIGHT JOIN FULL OUTER JOIN Subqueries Query within a query: SELECT name FROM customers WHERE customer\_id IN ( SELECT customer\_id FROM orders WHERE amount > 100 ); Transactions Ensures all-or-nothing execution: BEGIN; UPDATE accounts SET balance = balance - 100 WHERE account\_id = 1; UPDATE accounts SET balance = balance + 100 WHERE account\_id = 2; COMMIT; Use ROLLBACK; to cancel.
+
+Examples and Use Cases
+E-commerce Platform: Add a new product: INSERT INTO products (name, category, price) VALUES ('Wireless Mouse', 'Electronics', 19.99); Top 5 selling books: SELECT b.title, SUM(oi.quantity) as sold FROM order\_items oi JOIN books b ON oi.book\_id = b.book\_id GROUP BY b.title ORDER BY sold DESC LIMIT 5; Update prices for clearance: UPDATE products SET price = price \* 0.8 WHERE category = 'Clearance';
+
+Exercises and Quizzes
+Practice: Select all customers from New York. Insert a new order for customer\_id 42. Find products with price > \$100, sorted descending. Group orders by customer and show total amount spent. Delete all orders before 2020. Quiz: Which command is used to retrieve data? ✅ c) SELECT What clause filters groups? ✅ b) HAVING Which is NOT a valid SQL type? ✅ c) ARRAY What does SELECT COUNT(\*) FROM orders GROUP BY customer\_id; return? ✅ b) Number of orders per customer Which constraint disallows NULL values? ✅ c) NOT NULL
+
+Further Reading
+SQL Cookbook – Anthony Molinaro Learning SQL – Alan Beaulieu W3Schools SQL PostgreSQL Docs Mode SQL Tutorial
+
+Summary Note
+This comprehensive module offers a structured learning path from SQL basics to advanced data manipulation, empowering users to write robust queries and understand relational databases in real-world contexts.
+
+Validation Note
+Validated for structure, accuracy, flow, and code clarity. All examples were modernized and formatted with correct SQL practices. Redundancies were removed and examples were expanded with real-world business scenarios. Ready for QA handoff.
+
+```
+
+### Output :
+
+
+``` block
+
+**📌 Problem Setter Head Agent — Workforce Instructions**
+**Topic:** SQL Fundamentals and Syntax Basics
+**Category:** Fundamental
+**Priority:** High
+
+This instructional briefing is for my 5 Problem Reviewer Agents (Agent 6.2.2) to create diverse, challenging, and well-aligned problem statements for the SQL Fundamentals and Syntax Basics module.
+
+---
+
+### ✅ Agent 1
+
+**Assigned Content Section:** *Introduction + Beginner’s Guide (What is SQL? CRUD, Data Types)*
+**Summary:** Introduces SQL as a declarative language for relational databases and covers the foundational CRUD operations (INSERT, SELECT, UPDATE, DELETE) and common data types (INTEGER, VARCHAR, DATE, BOOLEAN, etc.).
+
+**Instructions:**
+Create a problem statement that requires learners to use **all four CRUD operations** and apply **appropriate SQL data types** in a simple, real-world scenario. The problem should guide them to construct a basic schema and perform operations on it using correct syntax.
+
+**Example:**
+
+> “You are managing a music streaming app database.
+> a) Create a `songs` table with columns: song\_id (INT, PRIMARY KEY), title (VARCHAR), artist (VARCHAR), duration (FLOAT), release\_date (DATE), is\_explicit (BOOLEAN).
+> b) Insert two new songs.
+> c) Update one song’s title.
+> d) Delete songs released before 2020.
+> Write all four SQL statements.”
+
+**Do's:**
+
+* Include all CRUD operations.
+* Use appropriate data types for each column.
+* Include a mini-schema if helpful.
+* Write clear multi-part instructions.
+
+**Dont's:**
+
+* Don’t include JOINs, subqueries, or advanced clauses.
+* Avoid vague use cases (e.g., generic tables without meaning).
+* Don’t use non-standard SQL syntax.
+
+---
+
+### ✅ Agent 2
+
+**Assigned Content Section:** *Intermediate Concepts (WHERE, ORDER BY, GROUP BY, HAVING, LIMIT)*
+**Summary:** Teaches filtering, sorting, grouping, and summarizing data, with examples using books, genres, and prices. Focuses on precision and aggregation.
+
+**Instructions:**
+Design a scenario that requires learners to **filter**, **group**, **sort**, and **limit** data using real-world tables. Ensure learners understand the difference between `WHERE` vs `HAVING`, and guide them to combine **at least 3** intermediate clauses in a single query.
+
+**Example:**
+
+> “In a university’s course registration system, the `registrations` table has columns: course\_id, student\_id, semester, grade.
+> a) Write a query to count how many students registered per course in semester ‘Fall 2023’.
+> b) Only include courses with more than 50 students.
+> c) Sort by number of students in descending order.
+> d) Show only the top 3 results.”
+
+**Do's:**
+
+* Focus on combining multiple intermediate SQL clauses.
+* Use realistic datasets (e.g., university, store, ticket booking).
+* Highlight differences between WHERE and HAVING.
+
+**Dont's:**
+
+* Don’t repeat simple SELECT \* FROM WHERE queries.
+* Avoid using joins or nested subqueries.
+
+---
+
+### ✅ Agent 3
+
+**Assigned Content Section:** *SQL Constraints (PRIMARY KEY, FOREIGN KEY, NOT NULL, UNIQUE, CHECK)*
+**Summary:** Describes how constraints maintain data integrity in relational databases, using a `users` table as an example. Explains how constraints prevent invalid or duplicate data.
+
+**Instructions:**
+Write a problem that requires defining a table with **at least 4 constraints** and explaining their use. The scenario should be relatable (e.g., user sign-up, booking systems) and must demonstrate how constraints affect data validity.
+
+**Example:**
+
+> “You’re designing a `hotel_guests` table for a booking system.
+> Requirements:
+>
+> * Each guest must have a unique guest\_id.
+> * The email must be unique.
+> * Age must be above 18.
+> * The phone number must not be NULL.
+>   a) Write a CREATE TABLE statement with all constraints.
+>   b) Briefly explain why each constraint is necessary.”
+
+**Do's:**
+
+* Use realistic and meaningful constraint use cases.
+* Include a CREATE TABLE statement.
+* Highlight the importance of each constraint.
+
+**Dont's:**
+
+* Avoid abstract or over-complicated schemas.
+* Don’t use advanced SQL features like triggers or stored procedures.
+
+---
+
+### ✅ Agent 4
+
+**Assigned Content Section:** *Advanced Topics (JOINs, Subqueries, Transactions)*
+**Summary:** Explains combining tables with different JOIN types, using subqueries, and executing atomic operations with transactions. Includes realistic banking and customer/order examples.
+
+**Instructions:**
+Design a multi-step problem that requires **at least one JOIN** and **either a subquery or transaction block**. The scenario should reflect a real-world need for multi-table operations—e.g., banking, e-commerce, or logistics.
+
+**Example:**
+
+> “A logistics firm has:
+>
+> * `drivers(driver_id, name)`
+> * `deliveries(delivery_id, driver_id, delivery_date, status)`
+>   a) Write a query to list drivers who completed more than 5 deliveries in March 2023.
+>   b) Use JOIN and GROUP BY.
+>   c) Rewrite (a) using a subquery.
+>   d) Now assume two delivery records were mistakenly marked as ‘cancelled’. Write a transaction block to revert their status.”
+
+**Do's:**
+
+* Include at least one JOIN and optionally subquery or transaction.
+* Use real-world, cross-table scenarios.
+* Encourage comparison of approaches (e.g., join vs subquery).
+
+**Dont's:**
+
+* Don’t test only SELECT \* JOIN …
+* Avoid abstract or theoretical database structures.
+
+---
+
+### ✅ Agent 5
+
+**Assigned Content Section:** *Real-World Use Cases + Exercises and Quizzes*
+**Summary:** Presents end-to-end examples like updating clearance product prices, top selling books, inserting new orders, and multiple-choice SQL questions.
+
+**Instructions:**
+Create an open-ended problem that simulates a **real-world application** (e.g., e-commerce, school, banking) and requires a learner to perform **data analysis or reporting** using multiple SQL features. Encourage realistic, critical thinking.
+
+**Example:**
+
+> “An online learning platform tracks course enrollments in a table `enrollments(student_id, course_id, enrollment_date, price_paid)`.
+> a) Find the top 3 most-enrolled courses after Jan 2022.
+> b) What is the average revenue per course?
+> c) Write a query to show total revenue by month.
+> d) Identify which course had no enrollments in the last 6 months.”
+
+**Do's:**
+
+* Simulate real-world analysis or reports.
+* Require combining multiple SQL techniques.
+* Encourage learner interpretation and insight.
+
+**Dont's:**
+
+* Don’t focus only on syntax recall (like SELECT \* FROM …).
+* Avoid purely factual or binary problems (e.g., multiple choice only).
+
+---
+
+### 🧠 Final Encouragement:
+
+Agents, you are empowered to **innovate**, **simulate real-world SQL usage**, and **challenge learners** through thoughtful design. Blend storytelling, logic, and realistic data structures to build problems that reflect the power and nuance of SQL.
+
+Would you like me to now generate the actual problem statements based on these instructions?
+
+
+
+```
+
+
+____
+____
+
+
+## Using above prompts for All the problem setter gave very well formated problem statements.
+
+### Following are the results : -
+
+1. 
+``` block
+
+1. **Problem Statement:**
+
+You have been hired to help organize the digital database for a **pet adoption center**. The center wants to keep track of the animals available for adoption and their adopters. Your job is to set up the database and perform basic operations.
+
+---
+
+### 🐾 Part 1: Create Tables
+
+Create the following two tables with appropriate SQL data types:
+
+1. **pets**
+
+   * `pet_id` (INT, PRIMARY KEY)
+   * `name` (VARCHAR(50))
+   * `species` (VARCHAR(50))
+   * `birth_date` (DATE)
+   * `is_adopted` (BOOLEAN)
+
+2. **adopters**
+
+   * `adopter_id` (INT, PRIMARY KEY)
+   * `full_name` (VARCHAR(100))
+   * `email` (VARCHAR(100))
+   * `adoption_date` (DATE)
+
+---
+
+### 🐶 Part 2: Insert Data
+
+1. Add a new pet named **"Buddy"**, species **"Dog"**, born on **'2022-06-15'**, and **not adopted** yet.
+2. Add an adopter named **"Emma Stone"**, email **"[emma.stone@example.com](mailto:emma.stone@example.com)"**, who adopted a pet on **'2023-04-20'**.
+
+---
+
+### 🔍 Part 3: Retrieve Data
+
+Write a SELECT statement to:
+
+* Retrieve all pet names and their species that **have not been adopted**.
+
+---
+
+### ✏️ Part 4: Update Data
+
+Update the **is\_adopted** status of **"Buddy"** to **TRUE** after adoption.
+
+---
+
+### ❌ Part 5: Delete Data
+
+Delete the adopter record of **"Emma Stone"** from the database.
+
+---
+
+### 💡 Final Question
+
+**Why is `BOOLEAN` a better choice for `is_adopted` than using a VARCHAR like 'yes'/'no'?**
+
+---
+
+Would you like me to turn this into a student worksheet or quiz format next?
+```**Problem Statement:**
+
+You have been hired to help organize the digital database for a **pet adoption center**. The center wants to keep track of the animals available for adoption and their adopters. Your job is to set up the database and perform basic operations.
+
+---
+
+### 🐾 Part 1: Create Tables
+
+Create the following two tables with appropriate SQL data types:
+
+1. **pets**
+
+   * `pet_id` (INT, PRIMARY KEY)
+   * `name` (VARCHAR(50))
+   * `species` (VARCHAR(50))
+   * `birth_date` (DATE)
+   * `is_adopted` (BOOLEAN)
+
+2. **adopters**
+
+   * `adopter_id` (INT, PRIMARY KEY)
+   * `full_name` (VARCHAR(100))
+   * `email` (VARCHAR(100))
+   * `adoption_date` (DATE)
+
+---
+
+### 🐶 Part 2: Insert Data
+
+1. Add a new pet named **"Buddy"**, species **"Dog"**, born on **'2022-06-15'**, and **not adopted** yet.
+2. Add an adopter named **"Emma Stone"**, email **"[emma.stone@example.com](mailto:emma.stone@example.com)"**, who adopted a pet on **'2023-04-20'**.
+
+---
+
+### 🔍 Part 3: Retrieve Data
+
+Write a SELECT statement to:
+
+* Retrieve all pet names and their species that **have not been adopted**.
+
+---
+
+### ✏️ Part 4: Update Data
+
+Update the **is\_adopted** status of **"Buddy"** to **TRUE** after adoption.
+
+---
+
+### ❌ Part 5: Delete Data
+
+Delete the adopter record of **"Emma Stone"** from the database.
+
+---
+
+### 💡 Final Question
+
+**Why is `BOOLEAN` a better choice for `is_adopted` than using a VARCHAR like 'yes'/'no'?**
+
+---
+
+Would you like me to turn this into a student worksheet or quiz format next?
+```
+
+2. 
+
+``` block
+
+**✅ Problem Statement (Intermediate SQL – Filtering, Grouping, Sorting, and Limiting):**
+
+---
+
+**Scenario:**
+A public library system wants to evaluate which book genres are the most borrowed by users recently, so it can adjust its acquisition budget. You have access to the following table:
+
+```
+    borrow_records (record_id, user_id, genre, borrow_date, return_date, book_price)
+```
+
+The library wants a report that highlights the most borrowed genres based on total monetary value (approximated by `book_price`) in the current year.
+
+---
+
+**Your task:**
+Write a SQL query that:
+
+1. Calculates the **total book\_price** borrowed for each **genre**.
+2. Includes only records where the `borrow_date` is **after '2024-01-01'**.
+3. Only includes **genres** where the total value of borrowed books is **greater than \$2000**.
+4. Sorts the results by **total borrowed value** in **descending order**.
+5. Limits the results to the **top 5 genres**.
+
+---
+
+**Educational Focus:**
+
+* **WHERE** filters rows *before* grouping (e.g., by `borrow_date`).
+* **GROUP BY** groups rows by `genre`.
+* **HAVING** filters on *aggregated* results (e.g., total `book_price`).
+* **ORDER BY** sorts the aggregated data.
+* **LIMIT** restricts the final result set.
+
+---
+
+**Example Learning Discussion:**
+
+> “The `WHERE` clause filters out borrow records that occurred before 2024, so we only analyze recent data. `GROUP BY` organizes borrow records by genre. Then, `HAVING` filters out genres that didn’t cross the \$2000 threshold in value. Finally, `ORDER BY` ranks them, and `LIMIT` gives the top 5 results.”
+
+Would you like me to generate the sample solution query as well for teaching purposes?
+
+
+```
+
+3. 
+
+``` 
+    Here is a **Beginner-Level SQL Problem** for the **SQL Constraints** section, incorporating at least four constraints and emphasizing data integrity in a realistic context.
+
+    ---
+
+    ### 🧩 Problem Title: **Creating a Secure Users Table for a Web Application**
+
+    ### 📝 Problem Statement:
+
+    You're tasked with designing a table named `users` for a modern web application. This table will store essential user account details required during the sign-up process. The client has outlined the following validation rules to ensure **data consistency** and **security**:
+
+    #### Requirements:
+
+    * Every user must have a unique `user_id`.
+    * Email addresses must be **unique** to prevent duplicate accounts.
+    * Passwords must not be `NULL`.
+    * Usernames must be provided and cannot be blank.
+    * Age must be **at least 13** years (as per app policy for minors).
+
+    ---
+
+    ### 🔧 Tasks:
+
+    **a)** Write a SQL `CREATE TABLE` statement to define the `users` table using the appropriate constraints.
+
+    **b)** Explain the purpose of **each constraint** you used and how it ensures valid data entry.
+
+    ---
+
+    ### 💡 Example Structure to Implement:
+
+    ```sql
+    CREATE TABLE users (
+        user_id INT PRIMARY KEY,
+        username VARCHAR(50) NOT NULL,
+        email VARCHAR(100) UNIQUE NOT NULL,
+        password VARCHAR(100) NOT NULL,
+        age INT CHECK (age >= 13)
+    );
+    ```
+
+    ---
+
+    ### ✅ Constraint Explanations:
+
+    * **PRIMARY KEY (user\_id):** Ensures that each user has a unique identifier and no duplicate rows are allowed based on the primary key.
+    * **NOT NULL (username, email, password):** Prevents users from leaving critical fields empty during registration.
+    * **UNIQUE (email):** Guarantees that no two users can register with the same email address, avoiding account collisions.
+    * **CHECK (age >= 13):** Enforces the application’s age restriction policy to block underage users.
+
+    ---
+
+    ### ❌ What *Not* to Do:
+
+    * Do not include foreign keys or references to other tables.
+    * Do not include advanced database logic (e.g., triggers, views).
+    * Focus purely on **basic constraints and table definition** for clarity.
+
+    ---
+
+    Would you like this converted into a quiz format or expanded into an interactive lab task?
+
+```
+
+4. 
+
+``` 
+        ✅ **Agent 6.2.2 Output — Expert SQL Problem (Advanced JOINs, Subqueries, Transactions)**
+    **Topic: Advanced SQL — Multi-Table Operations in a Banking System**
+
+    ---
+
+    ### 💼 **Scenario: Banking Fraud Monitoring and Correction**
+
+    You are working as a **Lead Data Engineer** at *TrustBank*, a modern digital banking platform. The compliance team suspects anomalies in fund transfers and requests a data report and corrective transaction logic.
+
+    ---
+
+    ### 🧩 **Database Schema**
+
+    ```sql
+    CUSTOMERS (
+    customer_id SERIAL PRIMARY KEY,
+    name VARCHAR,
+    email VARCHAR,
+    registered_on DATE
+    )
+
+    ACCOUNTS (
+    account_id SERIAL PRIMARY KEY,
+    customer_id INT REFERENCES CUSTOMERS(customer_id),
+    account_type VARCHAR CHECK (account_type IN ('savings', 'checking')),
+    balance DECIMAL(12,2)
+    )
+
+    TRANSFERS (
+    transfer_id SERIAL PRIMARY KEY,
+    sender_account_id INT REFERENCES ACCOUNTS(account_id),
+    receiver_account_id INT REFERENCES ACCOUNTS(account_id),
+    transfer_date TIMESTAMP,
+    amount DECIMAL(10,2),
+    status VARCHAR CHECK (status IN ('completed', 'failed', 'reversed'))
+    )
+
+    REVERSALS (
+    reversal_id SERIAL PRIMARY KEY,
+    original_transfer_id INT REFERENCES TRANSFERS(transfer_id),
+    reversed_on TIMESTAMP,
+    reason TEXT
+    )
+    ```
+
+    ---
+
+    ### 🎯 **Your Tasks**
+
+    #### **Part A: Identify suspicious fund transfers**
+
+    Write a SQL query to list all customers who:
+
+    * **Sent money to the same receiver more than 3 times in a single day**, where each transfer was above ₹10,000.
+    * For each such sender-receiver pair, return:
+
+    * `sender_name`, `receiver_name`, `transfer_date (date only)`, `number_of_transfers`, `total_amount_transferred`
+
+    Use at least one **JOIN** and **GROUP BY**, and avoid `SELECT *`.
+
+    ---
+
+    #### **Part B: Write the same logic using a correlated subquery**
+
+    Return the same output using a subquery instead of a GROUP BY JOIN.
+
+    ---
+
+    #### **Part C: Correction via Transaction Block**
+
+    Assume compliance found that two specific `transfer_id`s (say `1012` and `1017`) were mistakenly marked as `"completed"` instead of `"reversed"`. You need to:
+
+    * Write a **transaction block** that:
+
+    * Updates their status to `'reversed'`.
+    * Inserts a new record into `REVERSALS` for each.
+    * Rolls back if either insertion fails.
+
+    Use standard **PostgreSQL transaction syntax**.
+
+    ---
+
+    ### 🧷 **Constraints & Instructions**
+
+    * Use **INNER JOINs** for sender/receiver linking via `ACCOUNTS → CUSTOMERS`.
+    * You **must not** assume sender and receiver belong to different customers.
+    * Avoid cartesian joins or unnecessary nested loops.
+    * Optimize readability and maintainability.
+    * No use of `SELECT *`.
+
+    ---
+
+    ### ✅ **Optional Bonus**
+
+    Write a query to find **customers who both sent and received money to/from the same person on the same day**, involving at least ₹25,000 cumulatively.
+
+    ---
+
+    Would you like a sample solution written out next, or assign this to a student for grading?
+```
+
+5.
+
+``` 
+**Real-World SQL Use Case: Bookstore Chain Analytics**
+
+**Scenario:**
+
+You are a data analyst at *ChapterOne Books*, a growing bookstore chain with both physical and online operations. The company is planning a quarterly strategy meeting, and you’ve been asked to provide key insights into recent sales performance, inventory trends, and customer behavior. You will extract data from their relational database.
+
+---
+
+### **Database Schema:**
+
+#### **Books**
+
+| Column Name | Data Type | Description                    |
+| ----------- | --------- | ------------------------------ |
+| book\_id    | INT       | Unique book identifier         |
+| title       | VARCHAR   | Title of the book              |
+| author      | VARCHAR   | Author name                    |
+| category    | VARCHAR   | Genre/category (e.g., Fiction) |
+| price       | DECIMAL   | Current selling price          |
+| stock       | INT       | Number of copies in inventory  |
+
+#### **Customers**
+
+| Column Name        | Data Type | Description                        |
+| ------------------ | --------- | ---------------------------------- |
+| customer\_id       | INT       | Unique customer ID                 |
+| name               | VARCHAR   | Full name                          |
+| email              | VARCHAR   | Email address                      |
+| registration\_date | DATE      | Date of account creation           |
+| preferred\_store   | VARCHAR   | Closest store city (e.g., "Delhi") |
+
+#### **Orders**
+
+| Column Name  | Data Type | Description                     |
+| ------------ | --------- | ------------------------------- |
+| order\_id    | INT       | Unique order ID                 |
+| customer\_id | INT       | Foreign key to Customers        |
+| order\_date  | DATE      | Date of order                   |
+| store\_type  | VARCHAR   | 'Online' or physical store city |
+
+#### **Order\_Items**
+
+| Column Name | Data Type | Description                        |
+| ----------- | --------- | ---------------------------------- |
+| order\_id   | INT       | Foreign key to Orders              |
+| book\_id    | INT       | Foreign key to Books               |
+| quantity    | INT       | Number of copies purchased         |
+| unit\_price | DECIMAL   | Price per copy at time of purchase |
+
+---
+
+### **Your Task: Generate a Sales and Operations Report**
+
+Use SQL to answer the following:
+
+---
+
+**1. Book Performance**
+
+a) Identify the **top 5 best-selling books** in the last 90 days by total quantity sold. Include title, author, total units sold, and revenue.
+
+b) List all books that have **not been sold** at all in the last 6 months. These may be candidates for clearance or removal.
+
+---
+
+**2. Inventory & Pricing Strategy**
+
+a) List all books where the **stock is below 15 units**, but they’ve sold more than **100 copies** in total since Jan 2023.
+
+b) Suppose management wants to **mark down** books in the *Self Help* category that haven't sold in the last 4 months. Find these books and calculate a proposed clearance price at **20% discount**.
+
+---
+
+**3. Customer Behavior**
+
+a) Find the **top 10 customers by total spending** in 2024 so far. Include their name, email, number of orders, and total spent.
+
+b) Identify customers who **only ordered online** and never visited a physical store. How many such customers are there?
+
+---
+
+**4. Store Insights**
+
+a) Compare revenue generated by **online vs. physical stores** in the last quarter.
+
+b) For each physical city store, calculate:
+
+* Total number of unique customers
+* Average order value
+* Most popular book category
+
+---
+
+### **Constraints & Expectations:**
+
+* Use `JOINs`, `GROUP BY`, `ORDER BY`, `HAVING`, `DATE` functions, and subqueries where appropriate.
+* Do **not** modify the schema or hardcode IDs.
+* Write clean, readable SQL.
+* Assume today’s date is `'2025-05-01'`.
+
+---
+
+Would you like a follow-up quiz with multiple-choice SQL logic questions or detailed solution queries next?
+
+```
+
+# Agent 7 : Problem Statement QA
+
+## Prompt 
+
+``` block
+You are an expert AI agent called the QA Agent. Your role is to ensure the quality and clarity of a problem statement generated by a Problem Reviewer Agent (Agent 6.2.2). You will be provided with the topic name, category, priority, validated content, and the generated problem statement. Your task is to review the problem statement, identify any issues or areas for improvement, and refine it to ensure it meets the required standards.
+
+**Input:**
+
+Topic Name: \[Topic Name from Agent 6.2.1] Category: \[Category from Agent 6.2.1] Priority: \[Priority from Agent 6.2.1] Validated Content: \[Complete validated content from Agent 6.2.1] Problem Statement: \[Problem statement generated by Agent 6.2.2]
+
+**Instructions:**
+
+1. **Problem Statement Review:** Thoroughly review the provided problem statement to ensure it meets the following criteria:
+
+   * **Relevance:** The problem statement is directly related to the topic and its subtopics.
+   * **Clarity:** The problem statement is written in clear, concise, and unambiguous language.
+   * **Challenge:** The problem statement requires learners to apply their knowledge and critical thinking skills.
+   * **Realism:** The problem statement is grounded in a realistic scenario or use case.
+   * **Completeness:** The problem statement provides all the necessary information and context for learners to solve it.
+   * **Testability:** The problem statement can be solved using the concepts and techniques covered in the validated content.
+2. **Issue Identification:** Identify any issues or areas for improvement in the problem statement. This may include:
+
+   * **Ambiguity:** Are there any parts of the problem statement that are unclear or open to interpretation?
+   * **Incompleteness:** Is any essential information missing from the problem statement?
+   * **Irrelevance:** Are there any parts of the problem statement that are not directly related to the topic?
+   * **Unrealistic Scenario:** Is the scenario presented in the problem statement unrealistic or contrived?
+   * **Difficulty Level:** Is the problem statement too easy or too difficult for the target audience?
+3. **Problem Statement Refinement:** Refine the problem statement to address any identified issues and improve its overall quality. This may involve:
+
+   * **Rewording Sentences:** Reword sentences to improve clarity and conciseness.
+   * **Adding Information:** Add any missing information or context.
+   * **Removing Irrelevant Content:** Remove any parts of the problem statement that are not directly related to the topic.
+   * **Adjusting Difficulty:** Modify the problem statement to make it more or less challenging, as appropriate.
+   * **Providing Hints:** Add hints or guidance to help learners who are struggling with the problem.
+4. **Output Format:** Present the refined problem statement in a well-organized format:
+
+Refined Problem Statement
+\[Refined problem statement]
+
+QA Notes
+\[A brief note outlining the changes made and the reasoning behind those changes]
+
+5. **Seeking Human Intervention:** If you are unable to resolve any issues or have doubts about the quality of the problem statement, indicate that human intervention is required.
+
+Now, test this prompt with GPT-4 (or Claude 3 Opus) and provide me with the complete output. Let's see if we can get this agent to generate well refined instructions to its workforce.
+Topic Name: SQL Fundamentals and Syntax Basics Category: Fundamental Priority: High Validated Content:
+
+SQL Fundamentals and Syntax Basics
+Introduction
+Structured Query Language (SQL) is the cornerstone of relational database interaction. Whether you're querying your favorite e-commerce app for recent purchases, building admin dashboards, or performing analytics, SQL is the language making it all happen. Developed at IBM in the 1970s, SQL has become the universal method for communicating with databases. In this journey, you will learn to write efficient SQL queries that retrieve, modify, and manage data with ease.
+
+Beginner's Guide
+What is SQL? SQL is a declarative language used to interact with relational databases. Think of it like giving commands to a highly efficient librarian who knows where every book is stored. SQL statements often mimic plain English and are terminated with semicolons: SELECT first\_name FROM customers; This retrieves the first\_name column from the customers table. CRUD Operations These are the four essential operations: Create (INSERT): INSERT INTO books (title, author, price) VALUES ('The SQL Adventure', 'Data Wizard', 19.99); Read (SELECT): SELECT \* FROM customers; Update (UPDATE): UPDATE books SET price = 24.99 WHERE title = 'The SQL Adventure'; Delete (DELETE): DELETE FROM books WHERE title = 'The SQL Adventure'; Data Types Overview Numbers: INTEGER, DECIMAL, FLOAT Text: VARCHAR, TEXT, CHAR Dates & Times: DATE, TIME, TIMESTAMP Boolean: BOOLEAN These help structure and validate the data stored.
+
+Intermediate Concepts
+WHERE Clause Filters rows that meet specific criteria: SELECT title, author FROM books WHERE genre = 'Fantasy'; ORDER BY Sorts results: SELECT name, price FROM products ORDER BY price DESC; GROUP BY with Aggregation Summarizes data: SELECT genre, COUNT() FROM books GROUP BY genre; HAVING Clause Filters grouped data: SELECT genre, COUNT() FROM books GROUP BY genre HAVING COUNT(\*) > 5; LIMIT Clause Restricts result size: SELECT \* FROM books ORDER BY price DESC LIMIT 10; SQL Constraints PRIMARY KEY: Ensures uniqueness FOREIGN KEY: Maintains relationships UNIQUE: Prevents duplicate values NOT NULL: Disallows null values CHECK: Enforces custom rules Example: CREATE TABLE users ( user\_id INT PRIMARY KEY, email VARCHAR(100) UNIQUE, is\_active BOOLEAN NOT NULL, age INT CHECK (age > 0) );
+
+Advanced Topics
+Joins Combine data from multiple tables: SELECT c.name, o.order\_date FROM customers c JOIN orders o ON c.customer\_id = o.customer\_id; Types: INNER JOIN LEFT JOIN RIGHT JOIN FULL OUTER JOIN Subqueries Query within a query: SELECT name FROM customers WHERE customer\_id IN ( SELECT customer\_id FROM orders WHERE amount > 100 ); Transactions Ensures all-or-nothing execution: BEGIN; UPDATE accounts SET balance = balance - 100 WHERE account\_id = 1; UPDATE accounts SET balance = balance + 100 WHERE account\_id = 2; COMMIT; Use ROLLBACK; to cancel.
+
+Examples and Use Cases
+E-commerce Platform: Add a new product: INSERT INTO products (name, category, price) VALUES ('Wireless Mouse', 'Electronics', 19.99); Top 5 selling books: SELECT b.title, SUM(oi.quantity) as sold FROM order\_items oi JOIN books b ON oi.book\_id = b.book\_id GROUP BY b.title ORDER BY sold DESC LIMIT 5; Update prices for clearance: UPDATE products SET price = price \* 0.8 WHERE category = 'Clearance';
+
+Exercises and Quizzes
+Practice: Select all customers from New York. Insert a new order for customer\_id 42. Find products with price > \$100, sorted descending. Group orders by customer and show total amount spent. Delete all orders before 2020. Quiz: Which command is used to retrieve data? ✅ c) SELECT What clause filters groups? ✅ b) HAVING Which is NOT a valid SQL type? ✅ c) ARRAY What does SELECT COUNT(\*) FROM orders GROUP BY customer\_id; return? ✅ b) Number of orders per customer Which constraint disallows NULL values? ✅ c) NOT NULL
+
+Further Reading
+SQL Cookbook – Anthony Molinaro Learning SQL – Alan Beaulieu W3Schools SQL PostgreSQL Docs Mode SQL Tutorial
+
+Summary Note
+This comprehensive module offers a structured learning path from SQL basics to advanced data manipulation, empowering users to write robust queries and understand relational databases in real-world contexts.
+
+Validation Note
+Validated for structure, accuracy, flow, and code clarity. All examples were modernized and formatted with correct SQL practices. Redundancies were removed and examples were expanded with real-world business scenarios. Ready for QA handoff. Problem Statement: You have been hired to help organize the digital database for a pet adoption center. The center wants to keep track of the animals available for adoption and their adopters. Your job is to set up the database and perform basic operations. 🐾 Part 1: Create Tables Create the following two tables with appropriate SQL data types: pets pet\_id (INT, PRIMARY KEY) name (VARCHAR(50)) species (VARCHAR(50)) birth\_date (DATE) is\_adopted (BOOLEAN) adopters adopter\_id (INT, PRIMARY KEY) full\_name (VARCHAR(100)) email (VARCHAR(100)) adoption\_date (DATE) 🐶 Part 2: Insert Data Add a new pet named "Buddy", species "Dog", born on '2022-06-15', and not adopted yet. Add an adopter named "Emma Stone", email "[emma.stone@example.com](mailto:emma.stone@example.com)", who adopted a pet on '2023-04-20'. 🔍 Part 3: Retrieve Data Write a SELECT statement to: Retrieve all pet names and their species that have not been adopted. ✏️ Part 4: Update Data Update the is\_adopted status of "Buddy" to TRUE after adoption. ❌ Part 5: Delete Data Delete the adopter record of "Emma Stone" from the database. 💡 Final Question Why is BOOLEAN a better choice for is\_adopted than using a VARCHAR like 'yes'/'no'? Would you like me to turn this into a student worksheet or quiz format next?
+```
+## Problem Statement passed : 
+
+```
+**Real-World SQL Use Case: Bookstore Chain Analytics**
+
+**Scenario:**
+
+You are a data analyst at *ChapterOne Books*, a growing bookstore chain with both physical and online operations. The company is planning a quarterly strategy meeting, and you’ve been asked to provide key insights into recent sales performance, inventory trends, and customer behavior. You will extract data from their relational database.
+
+---
+
+### **Database Schema:**
+
+#### **Books**
+
+| Column Name | Data Type | Description                    |
+| ----------- | --------- | ------------------------------ |
+| book\_id    | INT       | Unique book identifier         |
+| title       | VARCHAR   | Title of the book              |
+| author      | VARCHAR   | Author name                    |
+| category    | VARCHAR   | Genre/category (e.g., Fiction) |
+| price       | DECIMAL   | Current selling price          |
+| stock       | INT       | Number of copies in inventory  |
+
+#### **Customers**
+
+| Column Name        | Data Type | Description                        |
+| ------------------ | --------- | ---------------------------------- |
+| customer\_id       | INT       | Unique customer ID                 |
+| name               | VARCHAR   | Full name                          |
+| email              | VARCHAR   | Email address                      |
+| registration\_date | DATE      | Date of account creation           |
+| preferred\_store   | VARCHAR   | Closest store city (e.g., "Delhi") |
+
+#### **Orders**
+
+| Column Name  | Data Type | Description                     |
+| ------------ | --------- | ------------------------------- |
+| order\_id    | INT       | Unique order ID                 |
+| customer\_id | INT       | Foreign key to Customers        |
+| order\_date  | DATE      | Date of order                   |
+| store\_type  | VARCHAR   | 'Online' or physical store city |
+
+#### **Order\_Items**
+
+| Column Name | Data Type | Description                        |
+| ----------- | --------- | ---------------------------------- |
+| order\_id   | INT       | Foreign key to Orders              |
+| book\_id    | INT       | Foreign key to Books               |
+| quantity    | INT       | Number of copies purchased         |
+| unit\_price | DECIMAL   | Price per copy at time of purchase |
+
+---
+
+### **Your Task: Generate a Sales and Operations Report**
+
+Use SQL to answer the following:
+
+---
+
+**1. Book Performance**
+
+a) Identify the **top 5 best-selling books** in the last 90 days by total quantity sold. Include title, author, total units sold, and revenue.
+
+b) List all books that have **not been sold** at all in the last 6 months. These may be candidates for clearance or removal.
+
+---
+
+**2. Inventory & Pricing Strategy**
+
+a) List all books where the **stock is below 15 units**, but they’ve sold more than **100 copies** in total since Jan 2023.
+
+b) Suppose management wants to **mark down** books in the *Self Help* category that haven't sold in the last 4 months. Find these books and calculate a proposed clearance price at **20% discount**.
+
+---
+
+**3. Customer Behavior**
+
+a) Find the **top 10 customers by total spending** in 2024 so far. Include their name, email, number of orders, and total spent.
+
+b) Identify customers who **only ordered online** and never visited a physical store. How many such customers are there?
+
+---
+
+**4. Store Insights**
+
+a) Compare revenue generated by **online vs. physical stores** in the last quarter.
+
+b) For each physical city store, calculate:
+
+* Total number of unique customers
+* Average order value
+* Most popular book category
+
+---
+
+### **Constraints & Expectations:**
+
+* Use `JOINs`, `GROUP BY`, `ORDER BY`, `HAVING`, `DATE` functions, and subqueries where appropriate.
+* Do **not** modify the schema or hardcode IDs.
+* Write clean, readable SQL.
+* Assume today’s date is `'2025-05-01'`.
+
+---
+
+Would you like a follow-up quiz with multiple-choice SQL logic questions or detailed solution queries next?
+```
+
+## Output 
+
+``` block
+
+## **Refined Problem Statement**
+
+### **Real-World SQL Analytics Challenge: Bookstore Chain Dashboard**
+
+**Scenario:**
+You are working as a **Data Analyst** at *ChapterOne Books*, a growing bookstore chain with both online and physical outlets. As part of the upcoming quarterly strategy meeting, you’ve been asked to generate insights from the operational database to support business decisions related to sales, inventory, customer behavior, and store performance.
+
+---
+
+### **Database Schema Overview:**
+
+#### 📚 `Books`
+
+* `book_id` (INT): Unique identifier
+* `title` (VARCHAR): Book title
+* `author` (VARCHAR): Author name
+* `category` (VARCHAR): Genre (e.g., Fiction, Self Help)
+* `price` (DECIMAL): Current selling price
+* `stock` (INT): Current stock quantity
+
+#### 👥 `Customers`
+
+* `customer_id` (INT): Unique customer ID
+* `name` (VARCHAR): Full name
+* `email` (VARCHAR): Email address
+* `registration_date` (DATE): When the customer registered
+* `preferred_store` (VARCHAR): Nearest city-based store
+
+#### 🧾 `Orders`
+
+* `order_id` (INT): Unique order ID
+* `customer_id` (INT): Foreign key
+* `order_date` (DATE): Date of purchase
+* `store_type` (VARCHAR): 'Online' or city name for physical store
+
+#### 📦 `Order_Items`
+
+* `order_id` (INT): Foreign key
+* `book_id` (INT): Foreign key
+* `quantity` (INT): Units sold
+* `unit_price` (DECIMAL): Price at time of sale
+
+---
+
+### ✅ **Your Task: Create an Operational Report using SQL**
+
+Use **SQL queries** to answer the following questions. Ensure correct usage of joins, filtering, grouping, and aggregation. Base your calculations on the current date: `'2025-05-01'`.
+
+---
+
+#### 📈 **1. Book Performance**
+
+**a.** List the **top 5 best-selling books** from the last **90 days**. Include:
+
+* `title`, `author`, total units sold, total revenue (quantity × unit\_price)
+
+**b.** Identify books that have **not been sold** in the past **6 months**. Useful for clearance decisions.
+
+---
+
+#### 🧮 **2. Inventory & Pricing Strategy**
+
+**a.** Find books that:
+
+* Have **stock < 15**
+* And have sold **over 100 units** since **Jan 1, 2023**
+
+**b.** For books in the *Self Help* category:
+
+* Find those with **zero sales in the last 4 months**
+* Propose a **clearance price** with a **20% discount** on the current price
+
+---
+
+#### 👤 **3. Customer Behavior**
+
+**a.** Identify the **top 10 customers** by total spending in **2024**. Include:
+
+* Name, email, number of orders, and total spent
+
+**b.** Count how many customers have **only placed online orders**, never using physical stores
+
+---
+
+#### 🏬 **4. Store Insights**
+
+**a.** Compare **total revenue** for:
+
+* **Online store** vs **all physical stores** in the **last quarter**
+
+**b.** For each **physical city store** (exclude 'Online'):
+
+* Total number of **unique customers**
+* **Average order value**
+* **Most popular book category**
+
+---
+
+### 🔧 Constraints
+
+* Use only the schema provided.
+* Avoid hardcoded IDs or assumptions about values.
+* Use `JOIN`, `GROUP BY`, `HAVING`, date functions (`DATE_SUB`, `CURRENT_DATE`, etc.), and subqueries as needed.
+* Maintain clean and readable SQL syntax.
+* Use `'2025-05-01'` as today’s date for calculations.
+
+---
+
+**Bonus Reflection:**
+Which performance metric (units sold, revenue, or customer engagement) do you believe should influence inventory restocking the most—and why?
+
+---
+
+### QA Notes:
+
+* **Clarity Improved:** Clearer structuring of each section and added explicit expectations for each sub-question (e.g., include fields, avoid assumptions).
+* **Completeness Ensured:** Dates, time frames, and constraints were made explicit to avoid ambiguity.
+* **Relevance & Realism:** Scenario is grounded in real-world data analytics use cases for retail businesses.
+* **Difficulty Balanced:** Moderate to challenging, covering SQL joins, aggregations, subqueries, and conditional logic, suitable for intermediate learners.
+* **Testability Confirmed:** Every question aligns directly with validated schema and content from earlier SQL modules.
+
+Would you like me to generate detailed SQL query solutions or transform this into an interactive SQL practice workbook?
+
+```
