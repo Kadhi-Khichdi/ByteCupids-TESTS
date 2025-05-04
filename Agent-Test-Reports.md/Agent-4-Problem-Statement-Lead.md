@@ -531,7 +531,7 @@ This is a generic prompt ran for test without orchestration just to visualise th
     ```
 ```
 
-### Gemini :
+## Gemini :
 
 ``` 
 
@@ -608,3 +608,120 @@ b) **Processing a Sale:** When a customer buys 2 copies of a book ('978-98765432
 c) **Reporting Low Stock:** The manager wants a report of all books with fewer than 5 copies available, showing the `title`, `author`, and `quantity_on_hand`, ordered by quantity ascending. Write the `SELECT` query for this report. How might indexing the `quantity_on_hand` column impact the performance of this query, especially if the `books` table becomes very large?
 
 ```
+
+## Claude :
+
+## Problem Set for CRUD in MySQL
+
+### Problem 1 [Easy]
+You are working with a `products` table in MySQL that has the following columns: `id` (INT, AUTO_INCREMENT, PRIMARY KEY), `name` (VARCHAR), `price` (DECIMAL), `stock_count` (INT), and `category` (VARCHAR).
+
+Write MySQL statements to perform the following operations:
+1. Insert a new product called "Wireless Mouse" with a price of $29.99, stock count of 45, and category "Peripherals"
+2. Retrieve all products in the "Peripherals" category
+3. Update the price of the "Wireless Mouse" to $24.99
+4. Delete all products that have a stock count of 0
+
+For each statement, explain which CRUD operation it represents and what specific SQL command is being used.
+
+### Problem 2 [Medium]
+You are managing a library database with two tables:
+
+**books**
+- `id` (INT, PRIMARY KEY)
+- `title` (VARCHAR)
+- `author_id` (INT, FOREIGN KEY)
+- `isbn` (VARCHAR, UNIQUE)
+- `published_date` (DATE)
+- `available` (BOOLEAN)
+
+**authors**
+- `id` (INT, PRIMARY KEY)
+- `name` (VARCHAR)
+- `nationality` (VARCHAR)
+
+Write MySQL statements to:
+1. Insert a new author and then add two books written by this author in the same transaction
+2. Find all available books by authors of a specific nationality, showing the book title and author name
+3. Update the availability status of all books published before 2010 to FALSE
+4. Implement a "safe delete" operation that prevents deletion of an author if they still have books in the database
+
+Explain how you would handle potential constraint violations for each operation and how transactions ensure data integrity in this scenario.
+
+### Problem 3 [Hard]
+You're working with an e-commerce database that has three related tables:
+
+**customers**
+- `id` (INT, PRIMARY KEY)
+- `name` (VARCHAR)
+- `email` (VARCHAR, UNIQUE)
+- `created_at` (TIMESTAMP)
+- `status` (ENUM: 'active', 'inactive', 'suspended')
+
+**orders**
+- `id` (INT, PRIMARY KEY)
+- `customer_id` (INT, FOREIGN KEY)
+- `order_date` (TIMESTAMP)
+- `total_amount` (DECIMAL)
+- `status` (ENUM: 'pending', 'shipped', 'delivered', 'cancelled')
+
+**order_items**
+- `id` (INT, PRIMARY KEY)
+- `order_id` (INT, FOREIGN KEY)
+- `product_id` (INT, FOREIGN KEY)
+- `quantity` (INT)
+- `unit_price` (DECIMAL)
+
+Design MySQL statements for the following complex scenarios:
+
+1. Implement an "order cancellation" process that must:
+   - Check if the order status allows cancellation (only 'pending' orders can be cancelled)
+   - Update the order status to 'cancelled'
+   - Create an audit log entry recording who cancelled the order and when
+   - Ensure the entire operation is atomic (either fully completes or fully fails)
+
+2. Create a query that efficiently retrieves:
+   - The top 10 customers by total order value
+   - Including only orders made in the last 3 months
+   - Showing customer name, email, number of orders, and total spent
+   - Excluding cancelled orders and inactive customers
+
+3. Implement a proper "soft delete" strategy for customers that:
+   - Preserves referential integrity with existing orders
+   - Prevents email address conflicts if a new customer registers with the same email in the future
+   - Makes it clear in queries which customers are deleted vs. active
+
+Explain your approach to optimizing these operations, including any indexes you would create and how you would handle potential race conditions.
+
+### Problem 4 [Real-World]
+You're designing a social media platform's database schema and implementing CRUD operations for its core functionality. The platform allows users to create profiles, post content, follow other users, like/comment on posts, and receive notifications.
+
+**Design Task:**
+1. Design the necessary tables for this application, focusing on at least:
+   - Users
+   - Posts
+   - Follows
+   - Comments
+   - Likes
+   - Notifications
+   
+   Include appropriate columns, primary keys, foreign keys, indexes, and constraints.
+
+2. Implement the following critical CRUD operations with optimized MySQL statements:
+   - User registration (with duplicate email prevention)
+   - Creating a new post (with appropriate metadata)
+   - Implementing the "follow" functionality
+   - Displaying a user's feed (posts from followed users, sorted by recency)
+   - Liking/unliking a post (must be idempotent - prevent duplicate likes)
+   - Efficiently counting likes and comments on a post
+   - Marking notifications as read
+
+3. Address these real-world concerns in your implementation:
+   - Preventing SQL injection vulnerabilities
+   - Handling transaction integrity for multi-step operations
+   - Implementing proper pagination for the user's feed query
+   - Creating appropriate indexes for performance
+   - Designing for scale (what might become bottlenecks?)
+   - Implementing proper "soft delete" mechanisms where appropriate
+
+Explain your design decisions, performance considerations, and how your implementation aligns with best practices for MySQL CRUD operations in a production environment.
