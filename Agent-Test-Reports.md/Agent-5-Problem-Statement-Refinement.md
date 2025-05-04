@@ -1,4 +1,61 @@
 Provided Problem statements from claude in last iteration along with this prompt
+ 
+## PROMPT
+
+You are a senior AI educator tasked with merging multiple raw problem statements into one or more **progressively structured, interconnected problem sets** that thoroughly teach the given topic.
+
+
+### 🔧 Objective:
+
+Given 3–4 separate problem statements, your job is to:
+- Combine them into a **single, rich, multi-part challenge**, or
+- Design a **sequence of 2–3 learning arcs** that together help a learner deeply grasp the topic
+- Smoothly integrate increasing difficulty levels
+- Add transitions, context, and framing to make it feel **cohesive and intentional**
+- Maintain ambiguity where needed — avoid giving answers
+- Ensure it feels like a *narrative*, not a test
+
+---
+
+### 🧾 Input Metadata:
+
+- **Topic:** {{topic_name}}
+- **Module:** {{module_name}}
+- **Audience:** Self-guided learners with chat/voice tutor agent
+- **Use Case:** These problem arcs will be used by a downstream discussion agent to walk learners through discovery and solution-building
+
+---
+
+### 🧩 Raw Problems:
+
+1. [Easy] {{problem_1}}
+2. [Medium] {{problem_2}}
+3. [Hard] {{problem_3}}
+4. [Real-World] {{problem_4}}
+
+---
+
+### ✅ Output Format:
+
+```markdown
+## Composite Problem Set: {{topic_name}}
+
+### Problem Arc 1: [Foundations of {{topic}}]
+(Combine Easy + Medium)
+
+...
+
+### Problem Arc 2: [Deep Dive & Edge Cases]
+(Use Hard challenge)
+
+...
+
+### Problem Arc 3: [Real-World Simulation]
+(Frame Real-World scenario with enough narrative and open ends)
+
+...
+```
+
 
 ## Composite Problem Set: CRUD in MySQL
 
@@ -140,4 +197,165 @@ Consider potential race conditions. What might happen if two users try to update
     *   **Soft Deletes:** Where might soft deletes be appropriate in this application (e.g., `users`, `posts`, `comments`)? Justify your choices.
 
 This final arc requires you to synthesize your understanding of CRUD, schema design, transactions, indexing, and operational considerations to build a robust and scalable system foundation. Explain your reasoning and design trade-offs clearly.
+
+## CLAUDE :-
+
+# Composite Problem Set: CRUD in MySQL
+
+## Problem Arc 1: Building the Digital Inventory System
+
+*You've recently joined Northside Electronics as their new database administrator. The small but growing retail business needs to modernize how they track their inventory and manage product information.*
+
+### Background Context
+The store manager has been using spreadsheets to track inventory, which has become increasingly difficult as the business grows. They've decided to implement a MySQL database for better data management. You've already set up a database with a `products` table that has the following structure:
+
+```sql
+CREATE TABLE products (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  stock_count INT NOT NULL DEFAULT 0,
+  category VARCHAR(50)
+);
 ```
+
+### Part A: Implementing Basic Inventory Management
+The store manager has handed you a list of new products that just arrived and needs your help adding them to the database.
+
+1. First, explore how you would add this new "Wireless Mouse" to the inventory system:
+   - Product Name: Wireless Mouse
+   - Price: $29.99
+   - Stock Count: 45
+   - Category: Peripherals
+
+2. The manager now wants to see all products in the "Peripherals" category to compare the new mouse with existing inventory. How would you retrieve this information?
+
+3. After market research, the manager decides that the Wireless Mouse should be priced at $24.99 instead. How would you update this specific product's price?
+
+4. During inventory cleanup, you notice several products with 0 stock that haven't been available for months. How would you remove these items from the database?
+
+### Part B: Managing the Growing Product Catalog
+As the business expands, you need more sophisticated queries to manage inventory effectively.
+
+1. The manager wants to know which product categories have the lowest average inventory levels. Design a query that shows each category and its average stock count, ordered from lowest to highest.
+
+2. For a promotional email, you need to find all products priced between $20 and $50 with at least 10 items in stock. How would you structure this query?
+
+3. The business needs to apply a 10% price increase to all products in the "Laptops" category that are priced under $500. Write the SQL statement that would accomplish this update.
+
+### Reflection Point
+- How do the four basic CRUD operations (Create, Read, Update, Delete) map to specific SQL commands you've used so far?
+- What integrity concerns should you consider when designing operations that modify your product data?
+- How might these operations need to change if multiple users were updating the database simultaneously?
+
+## Problem Arc 2: The Library Management System
+
+*The local community library has approached you after hearing about your successful work with Northside Electronics. They need help transitioning from their paper-based system to a digital database that tracks their books and authors.*
+
+### Scenario Introduction
+The library director shows you their current system: index cards for books and a separate author directory. You recognize the need for a relational database structure and have created two tables:
+
+```sql
+CREATE TABLE authors (
+  id INT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  nationality VARCHAR(50)
+);
+
+CREATE TABLE books (
+  id INT PRIMARY KEY,
+  title VARCHAR(200) NOT NULL,
+  author_id INT,
+  isbn VARCHAR(20) UNIQUE,
+  published_date DATE,
+  available BOOLEAN DEFAULT TRUE,
+  FOREIGN KEY (author_id) REFERENCES authors(id)
+);
+```
+
+### Challenge Components
+
+1. The library has acquired works by renowned author Gabriel García Márquez. Develop a transaction that:
+   - Adds Márquez to the authors table (if not already present)
+   - Inserts his famous works "One Hundred Years of Solitude" and "Love in the Time of Cholera" to the books table
+   - Ensures that if any part of this process fails, no partial data is committed
+
+2. The library is planning a cultural exhibition featuring books by authors from specific countries. Design a query that finds all available books written by authors of a particular nationality, displaying both the book title and author name in the results.
+
+3. The library is undergoing renovation, and books published before 2010 will be temporarily unavailable. Create an update operation that:
+   - Changes the availability status of all pre-2010 books to FALSE
+   - Reports back how many books were affected by this change
+
+4. The director is concerned about accidentally removing author records who still have books in circulation. Implement a safeguard that:
+   - Prevents the deletion of authors who still have books in the database
+   - Allows deletion only when an author has no associated books
+   - Provides meaningful feedback when a deletion is attempted but prevented
+
+### Critical Analysis
+- What challenges arise when working with related tables compared to a single table?
+- How do foreign key constraints protect data integrity, and what complications might they introduce?
+- In what scenarios would transactions be critical for maintaining consistent library data?
+- How might you modify these operations if you needed to track which staff member made each change?
+
+## Problem Arc 3: Building a Social Media Platform
+
+*Your database expertise has attracted the attention of a startup called ConnectHub that's building a new social media platform. They need your help designing the database architecture and implementing core functionality that can scale with their growth.*
+
+### Situational Background
+ConnectHub aims to create a platform where users can create profiles, share content, connect with others, and engage through likes and comments. As their database architect, you need to design a robust system that handles these interactions efficiently while planning for future growth.
+
+The platform needs to support:
+- User registration and profile management
+- Content posting and sharing
+- Social connections (follows/followers)
+- Engagement metrics (likes, comments)
+- Activity notifications
+- Content feeds customized for each user
+
+### Open-Ended Challenge
+
+1. **Database Design Phase**:
+   - Design the core tables needed for this social media platform
+   - Consider what columns each table should have
+   - Establish relationships between tables using primary and foreign keys
+   - Determine which indexes would improve performance for common operations
+   - Decide where constraints should be implemented to maintain data integrity
+
+2. **Implementation Phase**:
+   After designing your schema, implement SQL statements for these critical platform features:
+
+   a) **User Management**:
+   - Create a registration process that prevents duplicate email addresses
+   - Implement profile updates while maintaining data history
+   - Design a "soft delete" strategy that preserves user data for analytics while removing visibility
+
+   b) **Social Connection Features**:
+   - Implement the "follow" functionality between users
+   - Create an efficient query to display all followers of a given user
+   - Design a system to recommend new connections based on existing relationships
+
+   c) **Content and Engagement**:
+   - Develop the process for creating and displaying posts
+   - Implement like/unlike functionality that prevents duplicates
+   - Design an efficient method to count engagement metrics
+   - Create a personalized feed query that shows posts from followed users, sorted by recency
+
+   d) **Performance and Scaling**:
+   - Implement proper pagination for feed queries
+   - Design an efficient notification system
+   - Identify potential database bottlenecks and how you would address them
+
+### Extension Possibilities
+- How would you modify your design to incorporate post categorization or hashtags?
+- What changes would be needed to support direct messaging between users?
+- How might you implement content moderation flags and processes?
+- What privacy controls would you build into the database design?
+- How would you approach data archiving for older content while maintaining reference integrity?
+
+---
+
+**Thinking Points Throughout:**
+- How does each implementation demonstrate the four CRUD operations?
+- What specific MySQL features help optimize these operations?
+- How do constraints and transactions work together to maintain data integrity?
+- What performance considerations become more important as the database grows?
