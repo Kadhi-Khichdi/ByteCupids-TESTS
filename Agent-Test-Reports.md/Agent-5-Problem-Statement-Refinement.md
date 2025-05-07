@@ -56,6 +56,7 @@ Given 3–4 separate problem statements, your job is to:
 ...
 ```
 
+# Gemini : 
 
 ## Composite Problem Set: CRUD in MySQL
 
@@ -198,9 +199,8 @@ Consider potential race conditions. What might happen if two users try to update
 
 This final arc requires you to synthesize your understanding of CRUD, schema design, transactions, indexing, and operational considerations to build a robust and scalable system foundation. Explain your reasoning and design trade-offs clearly.
 
-## CLAUDE :-
-
-# Composite Problem Set: CRUD in MySQL
+# CLAUDE :-
+## Composite Problem Set: CRUD in MySQL
 
 ## Problem Arc 1: Building the Digital Inventory System
 
